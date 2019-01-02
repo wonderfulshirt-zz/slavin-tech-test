@@ -13,18 +13,13 @@ public class BaseTest {
 
     @BeforeSuite
     public void beforeSuite() {
-        //System.setProperty("headless", "false");
-        //String headless = System.getProperty("headless");
 
+        String outputDirectory = System.getProperty("build.output");
+        System.out.print("________________" + outputDirectory);
+
+        System.setProperty("webdriver.chrome.driver","..\\framework\\target\\classes\\chromedriver.exe");
         ChromeDriverManager.chromedriver();
         driver = new ChromeDriver();
-//        if("true".equals(headless)) {
-//            ChromeOptions chromeOptions = new ChromeOptions();
-//            chromeOptions.addArguments("--headless");
-//            driver = new ChromeDriver(chromeOptions);
-//        } else {
-//            driver = new ChromeDriver();
-//        }
     }
 
     @AfterSuite

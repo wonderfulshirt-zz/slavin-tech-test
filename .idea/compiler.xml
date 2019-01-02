@@ -15,8 +15,9 @@
     <bytecodeTargetLevel>
       <module name="domain" target="1.5" />
       <module name="framework" target="1.5" />
-      <module name="techtest-page-objects" target="1.5" />
-      <module name="techtest-regression-tests" target="1.5" />
+      <module name="page-objects" target="1.5" />
+      <module name="regression-tests" target="1.8.0_152-release" />
+      <module name="Slavin-Tech-Test" target="1.5" />
     </bytecodeTargetLevel>
   </component>
 </project>

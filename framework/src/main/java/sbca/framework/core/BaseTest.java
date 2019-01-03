@@ -10,14 +10,14 @@ import java.util.concurrent.TimeUnit;
 
 public class BaseTest {
 
-    private WebDriver driver;
+    protected static WebDriver driver;
 
     @BeforeSuite
     public void beforeSuite() {
         System.setProperty("webdriver.chrome.driver","..\\framework\\target\\classes\\chromedriver.exe");
-        ChromeDriverManager.chromedriver();
+
         driver = new ChromeDriver();
-        //driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
     @AfterSuite

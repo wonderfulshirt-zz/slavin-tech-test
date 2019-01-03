@@ -1,9 +1,7 @@
 package sbca.framework.core;
 
-import io.github.bonigarcia.wdm.ChromeDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import java.util.concurrent.TimeUnit;
@@ -26,9 +24,5 @@ public class BaseTest {
             driver.close();
             driver.quit();
         }
-    }
-
-    public WebDriver getDriver() {
-        return driver;
     }
 }

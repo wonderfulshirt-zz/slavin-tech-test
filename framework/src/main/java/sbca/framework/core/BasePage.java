@@ -2,6 +2,7 @@ package sbca.framework.core;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -19,6 +20,11 @@ public class BasePage {
         this.driver = driver;
         wait = new WebDriverWait(driver, TIMEOUT, POLLING);
         PageFactory.initElements(new AjaxElementLocatorFactory(driver, TIMEOUT), this);
+    }
+
+    protected void enterTextInWebElement(WebElement element, String text) {
+        element.clear();
+        element.sendKeys(text);
     }
 
     protected void waitForElementToAppear(By locator) {

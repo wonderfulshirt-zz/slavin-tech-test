@@ -2,7 +2,7 @@
     <test name="Test One">
         <parameter name="test-name" value="Test One"/>
         <classes>
-            <class name="sbca.tests.loginpage.LoginPageTests" />
+            <class name="sbca.tests.login.LoginPageTests" />
         </classes>
     </test>
 </suite>

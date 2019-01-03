@@ -4,6 +4,7 @@ import org.testng.annotations.Test;
 import sbca.framework.core.BaseTest;
 import sbca.pageobjects.general.LoginPage;
 import static org.testng.Assert.assertTrue;
+import org.testng.Reporter;
 
 public class LoginPageTests extends BaseTest {
 

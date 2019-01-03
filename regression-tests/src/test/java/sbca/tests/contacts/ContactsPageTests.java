@@ -9,7 +9,12 @@ import static org.testng.Assert.assertTrue;
 
 public class ContactsPageTests extends BaseTest {
     @Test
-    public void passingTest() {
-        assertEquals(1, 1);
+    public void loadContactsPageViaGlobalNavigationMenu() {
+        NavigationMenu navigationMenu = new NavigationMenu(driver);
+        assertTrue(navigationMenu.isInitialized());
+
+        
+        //        ContactsPage contactsPage = new ContactsPage(driver);
+//        assertTrue(contactsPage)
     }
 }

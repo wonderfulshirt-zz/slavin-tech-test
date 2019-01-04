@@ -5,13 +5,14 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import sbca.pageobjects.summary.SummaryPage;
+import sbca.pageobjects.global.NavigationMenu;
 
 import static org.testng.Assert.assertTrue;
 
 public class LoginPage extends BasePage {
 
     @FindBy(tagName = "h2")
-    private WebElement header;
+    private WebElement pagetTitle;
 
     @FindBy(id = "sso_Email")
     private WebElement emailTextBox;
@@ -22,10 +23,6 @@ public class LoginPage extends BasePage {
     @FindBy(css = "input[class='button primary']")
     private WebElement submitButton;
 
-    private String loginPageAddress = "https://app.sageone.com/login";
-    private String emailText = "rstraavaldson@mailinator.com";
-    private String passwordText = "P@55w0rd";
-
     public LoginPage(WebDriver driver) {
         super(driver);
     }
@@ -34,23 +31,29 @@ public class LoginPage extends BasePage {
         return submitButton.isDisplayed();
     }
 
-    public void login() {
-        enterTextInWebElement(emailTextBox, emailText);
-        enterTextInWebElement(passwordTextBox, passwordText);
+    public void enterTextInEmailTextBox(String text) {
+        waitForElementToBeVisible(emailTextBox);
+        emailTextBox.clear();
+        emailTextBox.sendKeys(text);
+    }
+
+    public void enterTextInPasswordTextBox(String text) {
+        waitForElementToBeVisible(passwordTextBox);
+        passwordTextBox.clear();
+        passwordTextBox.sendKeys(text);
+    }
+
+    public void enterCredentialsAndClickSubmit(String username, String password) {
+        enterTextInEmailTextBox(username);
+        enterTextInPasswordTextBox(password);
         this.submitButton.click();
     }
 
-    public void loginSuccess() {
-        driver.get(loginPageAddress);
-
-        LoginPage loginPage = new LoginPage(driver);
-        assertTrue(loginPage.isInitialized());
-
-        login();
-
-        SummaryPage summaryPage = new SummaryPage(driver);
-        assertTrue(summaryPage.isInitialized());
-
+    public void login(String username, String password) {
+        driver.get("https://app.sageone.com/login");
+        //assertTrue(isInitialized());
+        waitForElementToBeVisible(submitButton);
+        enterCredentialsAndClickSubmit(username, password);
     }
 
 }

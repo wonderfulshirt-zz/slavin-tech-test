@@ -17,4 +17,9 @@ public class NavigationMenu extends BasePage {
     public boolean isInitialized() {
         return contactsMenuItem.isDisplayed();
     }
+
+    public void clickContactsMenuItem() {
+        waitForElementToBeVisible(contactsMenuItem);
+        contactsMenuItem.click();
+    }
 }

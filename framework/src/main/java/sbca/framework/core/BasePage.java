@@ -14,7 +14,7 @@ public class BasePage {
     private static final int POLLING = 100; //milliseconds
 
     protected WebDriver driver;
-    private WebDriverWait wait;
+    protected WebDriverWait wait;
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
@@ -22,23 +22,12 @@ public class BasePage {
         PageFactory.initElements(new AjaxElementLocatorFactory(driver, TIMEOUT), this);
     }
 
-    protected void enterTextInWebElement(WebElement element, String text) {
-        element.clear();
-        element.sendKeys(text);
+    protected void waitForElementToBeVisible(WebElement element) throws Error{
+        wait.until(ExpectedConditions.visibilityOf(element));
     }
 
-    protected void waitForElementToAppear(By locator) {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+    protected void waitForElementToBeClickable(WebElement element) {
+        wait.until(ExpectedConditions.elementToBeClickable(element));
     }
-
-    protected void waitForElementToDisappear(By locator) {
-        wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
-    }
-
-    protected void waitForTextToDisappear(By locator, String text) {
-        wait.until(ExpectedConditions.not(ExpectedConditions.textToBe(locator, text)));
-    }
-
-
 
 }

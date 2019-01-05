@@ -19,7 +19,7 @@ public class ContactsPage extends BasePage {
     private WebElement pageTitle;
 
     @FindBy(id = "filter_search_text")
-    private WebElement searchBox;
+    private WebElement searchTextBox;
 
     @FindBy(css = "button[name='submit']")
     private WebElement searchButton;
@@ -44,17 +44,25 @@ public class ContactsPage extends BasePage {
         return newCustomerButton.isDisplayed();
     }
 
-    public void enterSearchText(String text) {
-        waitForElementToBeVisible(searchBox);
-        searchBox.clear();
-        searchBox.sendKeys(text);
+    public WebElement getSearchTextBox() {
+        return searchTextBox;
     }
 
-    public void clickSearchButton() {
-        waitForElementToBeVisible(searchButton);
-        JavascriptExecutor executor = (JavascriptExecutor)driver;
-        executor.executeScript("arguments[0].click();", searchButton);
+    public WebElement getSearchButton() {
+        return searchButton;
     }
+
+//    public void enterSearchText(String text) {
+//        waitForElementToBeVisible(searchTextBox);
+//        searchTextBox.clear();
+//        searchTextBox.sendKeys(text);
+//    }
+//
+//    public void clickSearchButton() {
+//        waitForElementToBeVisible(searchButton);
+//        JavascriptExecutor executor = (JavascriptExecutor)driver;
+//        executor.executeScript("arguments[0].click();", searchButton);
+//    }
 
     public List<WebElement> getContactsTableRows() {
         waitForElementToBeVisible(contactsTable);

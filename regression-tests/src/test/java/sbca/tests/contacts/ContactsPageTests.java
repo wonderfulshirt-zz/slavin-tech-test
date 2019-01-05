@@ -5,6 +5,7 @@ import org.testng.annotations.Test;
 import sbca.tests.base.BaseTest;
 import sbca.pageobjects.global.NavigationMenu;
 import sbca.pageobjects.contacts.*;
+import org.openqa.selenium.WebElement;
 
 import java.util.UUID;
 
@@ -21,19 +22,24 @@ public class ContactsPageTests extends BaseTest {
 
     @Test
     public void createCustomerWithMinimumRequiredFields() {
-
-        String businessName = UUID.randomUUID().toString().replace("-", "");;
-
+        // Declarations
         ContactsPage contactsPage = new ContactsPage(driver);
-        contactsPage.clickNewCustomerButton();
+        WebElement searchTextBox = contactsPage.getSearchTextBox();
+        WebElement searchButton = contactsPage.getSearchButton();
 
         CreateNewCustomerDialog createNewCustomerDialog = new CreateNewCustomerDialog(driver);
-        createNewCustomerDialog.enterTextInBusinessNameTextBox(businessName);
+        WebElement businessNameTextBox = createNewCustomerDialog.getBusinessNameTextBox();
+        String businessName = UUID.randomUUID().toString().replace("-", "");
+
+        // Test
+        contactsPage.clickNewCustomerButton();
+
+        createNewCustomerDialog.enterTextInElement(businessNameTextBox, businessName);
         createNewCustomerDialog.clickSaveButton();
         createNewCustomerDialog.waitForCreateNewCustomerDialogToBeInvisible();
 
-        contactsPage.enterSearchText(businessName);
-        contactsPage.clickSearchButton();
+        contactsPage.enterTextInElement(searchTextBox, businessName);
+        contactsPage.clickElementWithJS(searchButton);
 
         contactsPage.waitForNumberOfContactsInTableToEqual("1");
         contactsPage.checkContactsTableCellText(1, 3, businessName);

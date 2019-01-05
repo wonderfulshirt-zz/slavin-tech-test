@@ -1,52 +1,50 @@
 package sbca.tests.contacts;
 
 import org.openqa.selenium.WebElement;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import sbca.pageobjects.contacts.ContactsPage;
 import sbca.pageobjects.contacts.CreateNewCustomerDialog;
 import sbca.pageobjects.global.NavigationMenu;
 import sbca.tests.base.BaseTest;
-
 import java.util.UUID;
+import static org.testng.Assert.assertEquals;
 
 public class CreateNewCustomerDialogTests extends BaseTest {
 
-    @BeforeTest
-    public void loadContactsPageViaGlobalNavigationMenu() {
+    @BeforeMethod
+    public void shouldLoadContactsPageViaGlobalNavigationMenu() {
         NavigationMenu navigationMenu = new NavigationMenu(driver);
-        WebElement contactsMenuItem = navigationMenu.getContactsMenuItem();
-        navigationMenu.clickElementWithJS(contactsMenuItem);
-    }
-
-    @Test
-    public void createCustomerWithMinimumRequiredFields() {
-        // Declarations
+        navigationMenu.clickContactsMenuItem();
         ContactsPage contactsPage = new ContactsPage(driver);
-        WebElement searchTextBox = contactsPage.getSearchTextBox();
-        WebElement searchButton = contactsPage.getSearchButton();
-
-        CreateNewCustomerDialog createNewCustomerDialog = new CreateNewCustomerDialog(driver);
-        WebElement businessNameTextBox = createNewCustomerDialog.getBusinessNameTextBox();
-        String businessName = UUID.randomUUID().toString();
-
-        // Test
+        contactsPage.setSearchTextBox("");
+        contactsPage.clickSearchButton();
         contactsPage.clickNewCustomerButton();
-
-        createNewCustomerDialog.enterTextInElement(businessNameTextBox, businessName);
-        createNewCustomerDialog.clickSaveButton();
-        createNewCustomerDialog.waitForCreateNewCustomerDialogToBeInvisible();
-
-        contactsPage.enterTextInElement(searchTextBox, businessName);
-        contactsPage.clickElementWithJS(searchButton);
-
-        contactsPage.waitForNumberOfContactsInTableToEqual("1");
-        contactsPage.checkContactsTableCellText(1, 3, businessName);
-
     }
 
     @Test
-    public void isNotPossibleToCreateCustomerWithNoBusinessName() {
+    public void shouldCreateCustomerWithOnlyRequiredFields() {
+        String businessName = UUID.randomUUID().toString();
+        CreateNewCustomerDialog createNewCustomerDialog = new CreateNewCustomerDialog(driver);
+        createNewCustomerDialog.setBusinessNameTextBox(businessName);
+        createNewCustomerDialog.clickSaveButton();
+        createNewCustomerDialog.waitforSaveButtonToBeInvisible();
+
+        ContactsPage contactsPage = new ContactsPage(driver);
+        contactsPage.setSearchTextBox(businessName);
+        contactsPage.clickSearchButton();
+        contactsPage.waitForNumberOfRecordsTextToEqual("1");
+        contactsPage.validateContactsTableCellText(0,3,businessName);
+    }
+
+    @Test
+    public void shouldCreateCustomerWithAllFieldsComplete() {
+
+    }
+
+
+    @Test
+    public void shouldNotCreateCustomerWithBusinessNameOmitted() {
 
     }
 

@@ -22,22 +22,30 @@ public class BasePage {
         PageFactory.initElements(new AjaxElementLocatorFactory(driver, TIMEOUT), this);
     }
 
-    public void waitForElementToBeVisible(WebElement element) throws Error{
+    protected void waitForElementToBeVisible(WebElement element) throws Error{
         wait.until(ExpectedConditions.visibilityOf(element));
     }
 
-    public void waitForElementToBeClickable(WebElement element) {
+    protected void waitForElementToBeInvisible(WebElement element) throws Error{
+        wait.until(ExpectedConditions.invisibilityOf(element));
+    }
+
+    protected void waitForElementToBeClickable(WebElement element) {
         wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 
-    public void enterTextInElement(WebElement element, String text) {
+    protected void waitForElementTextToBe(WebElement element, String text) {
+        wait.until(ExpectedConditions.textToBePresentInElement(element, text));
+    }
+
+    protected void enterTextInElement(WebElement element, String text) {
         waitForElementToBeClickable(element);
         element.clear();
         element.sendKeys(text);
     }
 
     public void clickElementWithJS(WebElement element) {
-        waitForElementToBeVisible(element);
+        waitForElementToBeClickable(element);
         JavascriptExecutor executor = (JavascriptExecutor)driver;
         executor.executeScript("arguments[0].click();", element);
     }

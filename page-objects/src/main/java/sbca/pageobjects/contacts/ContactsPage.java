@@ -28,7 +28,7 @@ public class ContactsPage extends BasePage {
     private WebElement contactsTable;
 
     @FindBy(css = "span[class='records'")
-    private WebElement numberOfContacts;
+    private WebElement numberOfRecordsText;
 
     @FindBy(css = "a[data-role='primary_action']")
     private WebElement newCustomerButton;
@@ -44,65 +44,55 @@ public class ContactsPage extends BasePage {
         return newCustomerButton.isDisplayed();
     }
 
-    public WebElement getSearchTextBox() {
-        return searchTextBox;
-    }
-
-    public WebElement getSearchButton() {
-        return searchButton;
-    }
-
-//    public void enterSearchText(String text) {
-//        waitForElementToBeVisible(searchTextBox);
-//        searchTextBox.clear();
-//        searchTextBox.sendKeys(text);
-//    }
-//
-//    public void clickSearchButton() {
-//        waitForElementToBeVisible(searchButton);
-//        JavascriptExecutor executor = (JavascriptExecutor)driver;
-//        executor.executeScript("arguments[0].click();", searchButton);
-//    }
-
-    public List<WebElement> getContactsTableRows() {
-        waitForElementToBeVisible(contactsTable);
-        return contactsTable.findElements(By.xpath(".//tr"));
-    }
-
-    public String getContactsTableCellText(int row, int cell) {
-        List<WebElement> tableRows = getContactsTableRows();
-        WebElement tableRow = tableRows.get(row);
-        WebElement tableRowCell = tableRow.findElement(By.xpath(".//td[" + cell + "]"));
-        return tableRowCell.getText();
-    }
-
-    public void checkContactsTableCellText(int row, int cell, String expectedText) {
-        String cellText = getContactsTableCellText(row, cell);
-        assertEquals(cellText, expectedText);
-    }
-
-    public int getNumberOfContactsInTable() {
-        waitForElementToBeVisible(numberOfContacts);
-        String recordsText = numberOfContacts.getText();
-        int numberOfRecords = Integer.parseInt(recordsText);
-
-        return numberOfRecords;
-    }
-
-    public void waitForNumberOfContactsInTableToEqual(String text) {
-        wait.until(ExpectedConditions.textToBePresentInElement(numberOfContacts, text));
-    }
-
     public void clickNewCustomerButton() {
-        waitForElementToBeVisible(newCustomerButton);
-        JavascriptExecutor executor = (JavascriptExecutor)driver;
-        executor.executeScript("arguments[0].click();", newCustomerButton);
+        clickElementWithJS(newCustomerButton);
     }
 
     public void clickNewSupplierButton() {
-        waitForElementToBeVisible(newSupplierButton);
-        JavascriptExecutor executor = (JavascriptExecutor)driver;
-        executor.executeScript("arguments[0].click();", newSupplierButton);
+        clickElementWithJS(newSupplierButton);
+    }
+
+    public void setSearchTextBox(String text) {
+        enterTextInElement(searchTextBox, text);
+    }
+
+    public void clickSearchButton() {
+        clickElementWithJS(searchButton);
+    }
+
+    public WebElement getNewCustomerButton() { return newCustomerButton; }
+
+    public WebElement getNewSupplierButton() { return newSupplierButton; }
+
+    public WebElement getSearchTextBox() { return searchTextBox; }
+
+    public WebElement getSearchButton() { return searchButton; }
+
+    public List<WebElement> getContactsTableRows() {
+        waitForElementToBeVisible(contactsTable);
+        return contactsTable.findElements(By.xpath(".//tbody/tr"));
+    }
+
+    public WebElement getContactsTableCell(int row, int cell) {
+        List<WebElement> tableRows = getContactsTableRows();
+        WebElement tableRow = tableRows.get(row);
+        WebElement tableRowCell = tableRow.findElement(By.xpath(".//td[" + cell + "]"));
+
+        return tableRowCell;
+    }
+
+    public String getContactsTableCellText(int row, int cell) {
+        WebElement tableCell = getContactsTableCell(row, cell);
+        return tableCell.getText();
+    }
+
+    public void validateContactsTableCellText(int row, int cell, String text) {
+        String tableCellText = getContactsTableCellText(row, cell);
+        assertEquals(tableCellText, text);
+    }
+
+    public void waitForNumberOfRecordsTextToEqual(String text) {
+        wait.until(ExpectedConditions.textToBePresentInElement(numberOfRecordsText, text));
     }
 
 }

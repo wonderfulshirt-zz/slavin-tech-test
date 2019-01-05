@@ -19,14 +19,10 @@ public class BaseTest {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
         LoginPage loginPage = new LoginPage(driver);
-        WebElement emailTextBox = loginPage.getEmailTextBox();
-        WebElement passwordTextBox = loginPage.getPasswordTextBox();
-        WebElement submitButton = loginPage.getSubmitButton();
-
         driver.get("https://app.sageone.com/login");
-        loginPage.enterTextInElement(emailTextBox, "rstraavaldson@mailinator.com");
-        loginPage.enterTextInElement(passwordTextBox, "P@55w0rd");
-        loginPage.clickElementWithJS(submitButton);
+        loginPage.setEmailTextBox("rstraavaldson@mailinator.com");
+        loginPage.setPasswordTextBox("P@55w0rd");
+        loginPage.clickSubmitButton();
 
     }
 

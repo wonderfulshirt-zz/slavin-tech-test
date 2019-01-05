@@ -27,16 +27,16 @@ public class LoginPage extends BasePage {
         return submitButton.isDisplayed();
     }
 
-    public WebElement getEmailTextBox() {
-        return emailTextBox;
+    public void setEmailTextBox(String text) {
+        enterTextInElement(emailTextBox, text);
     }
 
-    public WebElement getPasswordTextBox() {
-        return passwordTextBox;
+    public void setPasswordTextBox(String text) {
+        enterTextInElement(passwordTextBox, text);
     }
 
-    public WebElement getSubmitButton() {
-        return submitButton;
+    public void clickSubmitButton() {
+        clickElementWithJS(submitButton);
     }
 
 }

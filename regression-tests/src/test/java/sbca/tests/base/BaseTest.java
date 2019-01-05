@@ -1,6 +1,7 @@
 package sbca.tests.base;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.AfterSuite;
@@ -18,7 +19,15 @@ public class BaseTest {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.login("rstraavaldson@mailinator.com", "P@55w0rd");
+        WebElement emailTextBox = loginPage.getEmailTextBox();
+        WebElement passwordTextBox = loginPage.getPasswordTextBox();
+        WebElement submitButton = loginPage.getSubmitButton();
+
+        driver.get("https://app.sageone.com/login");
+        loginPage.enterTextInElement(emailTextBox, "rstraavaldson@mailinator.com");
+        loginPage.enterTextInElement(passwordTextBox, "P@55w0rd");
+        loginPage.clickElementWithJS(submitButton);
+
     }
 
     @AfterSuite

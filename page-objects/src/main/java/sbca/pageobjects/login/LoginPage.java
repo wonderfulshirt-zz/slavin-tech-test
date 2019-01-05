@@ -4,10 +4,6 @@ import sbca.framework.core.BasePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import sbca.pageobjects.summary.SummaryPage;
-import sbca.pageobjects.global.NavigationMenu;
-
-import static org.testng.Assert.assertTrue;
 
 public class LoginPage extends BasePage {
 
@@ -31,29 +27,16 @@ public class LoginPage extends BasePage {
         return submitButton.isDisplayed();
     }
 
-    public void enterTextInEmailTextBox(String text) {
-        waitForElementToBeVisible(emailTextBox);
-        emailTextBox.clear();
-        emailTextBox.sendKeys(text);
+    public WebElement getEmailTextBox() {
+        return emailTextBox;
     }
 
-    public void enterTextInPasswordTextBox(String text) {
-        waitForElementToBeVisible(passwordTextBox);
-        passwordTextBox.clear();
-        passwordTextBox.sendKeys(text);
+    public WebElement getPasswordTextBox() {
+        return passwordTextBox;
     }
 
-    public void enterCredentialsAndClickSubmit(String username, String password) {
-        enterTextInEmailTextBox(username);
-        enterTextInPasswordTextBox(password);
-        this.submitButton.click();
-    }
-
-    public void login(String username, String password) {
-        driver.get("https://app.sageone.com/login");
-        //assertTrue(isInitialized());
-        waitForElementToBeVisible(submitButton);
-        enterCredentialsAndClickSubmit(username, password);
+    public WebElement getSubmitButton() {
+        return submitButton;
     }
 
 }

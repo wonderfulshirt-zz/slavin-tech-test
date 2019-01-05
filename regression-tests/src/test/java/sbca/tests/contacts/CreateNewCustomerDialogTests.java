@@ -15,7 +15,8 @@ public class CreateNewCustomerDialogTests extends BaseTest {
     @BeforeTest
     public void loadContactsPageViaGlobalNavigationMenu() {
         NavigationMenu navigationMenu = new NavigationMenu(driver);
-        navigationMenu.clickContactsMenuItem();
+        WebElement contactsMenuItem = navigationMenu.getContactsMenuItem();
+        navigationMenu.clickElementWithJS(contactsMenuItem);
     }
 
     @Test

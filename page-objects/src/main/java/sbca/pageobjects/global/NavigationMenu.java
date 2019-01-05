@@ -14,12 +14,12 @@ public class NavigationMenu extends BasePage {
         super(driver);
     }
 
+    public WebElement getContactsMenuItem() {
+        return contactsMenuItem;
+    }
+
     public boolean isInitialized() {
         return contactsMenuItem.isDisplayed();
     }
 
-    public void clickContactsMenuItem() {
-        waitForElementToBeVisible(contactsMenuItem);
-        contactsMenuItem.click();
-    }
 }

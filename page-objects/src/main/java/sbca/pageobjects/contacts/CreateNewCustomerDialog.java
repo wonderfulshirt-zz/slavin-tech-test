@@ -69,11 +69,6 @@ public class CreateNewCustomerDialog extends BasePage {
     public void waitforSaveButtonToBeInvisible() {
         waitForElementToBeInvisible(saveButton);
     }
-
-    public WebElement getBusinessNameTextBox() { return businessNameTextBox; }
-
-    public WebElement getBusinessNameTextBoxError() { return businessNameTextBoxError; }
-
-    public WebElement getSaveButton() { return saveButton; }
+    
 
 }

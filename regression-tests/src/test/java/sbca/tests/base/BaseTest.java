@@ -14,7 +14,15 @@ public class BaseTest {
 
     @BeforeSuite
     public void beforeSuite() {
-        System.setProperty("webdriver.chrome.driver","..\\framework\\target\\classes\\chromedriver.exe");
+        String path = System.getProperty("user.dir");
+        System.out.println(path);
+
+        // WHEN RUNNING WITH MVN
+        System.setProperty("webdriver.chrome.driver", path + "\\classes\\chromedriver.exe");
+
+        // WHEN RUNNING WITH A TESTNG RUN CONFIG IN THE IDE
+//        System.setProperty("webdriver.chrome.driver", path + "\\target\\classes\\chromedriver.exe");
+
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 

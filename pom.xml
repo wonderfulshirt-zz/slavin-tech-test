@@ -20,6 +20,8 @@
         <selenium.version>3.14.0</selenium.version>
         <webdrivermanager.version>3.0.0</webdrivermanager.version>
         <testng.version>6.14.3</testng.version>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
 
     <dependencies>
@@ -42,7 +44,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.5</version>
+                <version>3.0.0-M2</version>
                 <configuration>
                     <properties>
                         <!-- Suite testng xml file to consider for test execution -->
@@ -55,7 +57,7 @@
                         </property>
                         <property>
                             <name>listener</name>
-                            <value>org.uncommons.reportng.HTMLReporter, org.uncommons.reportng.JUnitXMLReporter, org.fest.swing.testng.listener.ScreenshotOnFailureListener</value>
+                            <value>org.uncommons.reportng.HTMLReporter, org.uncommons.reportng.JUnitXMLReporter</value>
                         </property>
                     </properties>
                     <workingDirectory>target/</workingDirectory>

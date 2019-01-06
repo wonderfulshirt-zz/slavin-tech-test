@@ -10,51 +10,55 @@ import sbca.tests.framework.TestListener;
 import java.util.UUID;
 
 @Listeners(TestListener.class)
-public class CreateNewCustomerTests extends BaseTest {
+public class DeleteCustomerTests extends BaseTest {
+
+    private String businessContactName;
 
     @BeforeMethod
-    public void shouldLoadContactsPageViaGlobalNavigationMenu() {
+    public void shouldCreateNewCustomer() {
+        setBusinessContactName(UUID.randomUUID().toString());
+        String businessName = getBusinessContactName();
+
         NavigationMenu navigationMenu = new NavigationMenu(driver);
         navigationMenu.clickContactsMenuItem();
+
         ContactsPage contactsPage = new ContactsPage(driver);
         contactsPage.setSearchTextBox("");
         contactsPage.clickSearchButton();
         contactsPage.clickNewCustomerButton();
-    }
 
-    @Test
-    public void shouldCreateCustomerWithOnlyRequiredFields() {
-        String businessName = UUID.randomUUID().toString();
-        //CreateNewContactDialogBase createNewContactDialogBase = new CreateNewContactDialogBase(driver);
+        //String businessName = UUID.randomUUID().toString();
         CreateNewCustomerContactDialog createNewCustomerContactDialog = new CreateNewCustomerContactDialog((driver));
         createNewCustomerContactDialog.setBusinessNameTextBox(businessName);
         createNewCustomerContactDialog.clickSaveButton();
         createNewCustomerContactDialog.waitForSaveButtonToBeInvisible();
 
-        ContactsPage contactsPage = new ContactsPage(driver);
         contactsPage.setSearchTextBox(businessName);
         contactsPage.clickSearchButton();
         contactsPage.waitForNumberOfRecordsTextToEqual("1");
         contactsPage.validateContactsTableCellText(0,3,businessName);
-        contactsPage.clickTableCell(0, 3);
-
-        CustomerPageMain customerPageMain = new CustomerPageMain(driver);
-        customerPageMain.validateContactTitleName(businessName);
-        customerPageMain.validateContactTitleType("Customer");
     }
 
     @Test
-    public void shouldCreateCustomerWithAllFieldsComplete() {
-        // complete every field and save. Validate values entered on the customer record screen.
+    public void shouldDeleteTheSelectedCustomer() {
+        ContactsPage contactsPage = new ContactsPage(driver);
+        contactsPage.clickTableRowCheckbox(0);
+        contactsPage.clickDeleteIcon();
+
+        DeleteContactDialog deleteContactDialog = new DeleteContactDialog(driver);
+        deleteContactDialog.clickYesButton();
+
+        contactsPage.setSearchTextBox(getBusinessContactName());
+        contactsPage.clickSearchButton();
+        contactsPage.waitForNumberOfRecordsTextToEqual("0");
     }
 
-    @Test
-    public void shouldNotCreateCustomerWithBusinessNameOmitted() {
-        CreateNewCustomerContactDialog createNewCustomerContactDialog = new CreateNewCustomerContactDialog((driver));
-        createNewCustomerContactDialog.setBusinessNameTextBox("");
-        createNewCustomerContactDialog.clickSaveButton();
-        createNewCustomerContactDialog.waitForValidationSummaryErrorsToBeVisible();
+    public void setBusinessContactName(String businessContactName) {
+        this.businessContactName = businessContactName;
+    }
+
+    public String getBusinessContactName() {
+        return businessContactName;
     }
 
 }
-

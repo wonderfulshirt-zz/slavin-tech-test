@@ -23,10 +23,6 @@ public class LoginPage extends BasePage {
         super(driver);
     }
 
-    public boolean isInitialized() {
-        return submitButton.isDisplayed();
-    }
-
     public void setEmailTextBox(String text) {
         enterTextInElement(emailTextBox, text);
     }

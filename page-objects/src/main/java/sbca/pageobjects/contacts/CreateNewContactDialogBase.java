@@ -34,12 +34,14 @@ public class CreateNewContactDialogBase extends BasePage {
     @FindBy(css = "button[data-element='save']")
     private WebElement saveButton;
 
+    @FindBy(css = "span[class='validation-summary__errors']")
+    private WebElement validationSummaryErrors;
+
+    @FindBy(css = "span[data-element='close']")
+    private WebElement closeIcon;
+
     public CreateNewContactDialogBase(WebDriver driver) {
         super(driver);
-    }
-
-    public boolean isInitialized() {
-        return saveButton.isDisplayed();
     }
 
     public void setBusinessNameTextBox(String text) {
@@ -66,9 +68,16 @@ public class CreateNewContactDialogBase extends BasePage {
         clickElementWithJS(saveButton);
     }
 
+    public void clickCloseIcon() {
+        clickElementWithJS(closeIcon);
+    }
+
     public void waitForSaveButtonToBeInvisible() {
         waitForElementToBeInvisible(saveButton);
     }
 
+    public void waitForValidationSummaryErrorsToBeVisible() {
+        waitForElementToBeVisible(validationSummaryErrors);
+    }
 
 }

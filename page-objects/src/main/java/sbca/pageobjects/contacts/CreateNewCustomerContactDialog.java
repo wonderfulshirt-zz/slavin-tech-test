@@ -1,16 +1,15 @@
-package sbca.pageobjects.summary;
+package sbca.pageobjects.contacts;
 
 import sbca.pageobjects.framework.BasePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class SummaryPage extends BasePage {
+public class CreateNewCustomerContactDialog extends CreateNewContactDialogBase {
 
-    @FindBy(tagName = "h1")
-    private WebElement header;
 
-    public SummaryPage(WebDriver driver) {
+
+    public CreateNewCustomerContactDialog(WebDriver driver) {
         super(driver);
     }
 

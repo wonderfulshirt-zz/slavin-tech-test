@@ -34,6 +34,9 @@ public class ContactsPage extends BasePage {
     @FindBy(css = "a[data-role='new_vendor']")
     private WebElement newSupplierButton;
 
+    @FindBy(css = "i[class='icon-bulk_destroy']")
+    private WebElement deleteIcon;
+
     public ContactsPage(WebDriver driver) {
         super(driver);
     }
@@ -56,6 +59,10 @@ public class ContactsPage extends BasePage {
 
     public void clickSearchButton() {
         clickElementWithJS(searchButton);
+    }
+
+    public void clickDeleteIcon() {
+        clickElementWithJS(deleteIcon);
     }
 
     public List<WebElement> getContactsTableRows() {
@@ -88,5 +95,7 @@ public class ContactsPage extends BasePage {
     public void clickTableCell(int row, int cell) {
         clickElementWithJS(getContactsTableCell(row, cell));
     }
+
+    public void clickTableRowCheckbox(int row) { clickElementWithJS(getContactsTableCell(row, 1)); }
 
 }

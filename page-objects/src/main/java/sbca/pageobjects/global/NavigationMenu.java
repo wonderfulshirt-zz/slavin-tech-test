@@ -14,16 +14,8 @@ public class NavigationMenu extends BasePage {
         super(driver);
     }
 
-    public WebElement getContactsMenuItem() {
-        return contactsMenuItem;
-    }
-
     public void clickContactsMenuItem() {
         clickElementWithJS(contactsMenuItem);
-    }
-
-    public boolean isInitialized() {
-        return contactsMenuItem.isDisplayed();
     }
 
 }

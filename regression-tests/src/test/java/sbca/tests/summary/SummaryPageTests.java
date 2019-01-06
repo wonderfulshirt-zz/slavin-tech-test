@@ -1,15 +1,17 @@
 package sbca.tests.summary;
 
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-import sbca.tests.base.BaseTest;
+import sbca.tests.framework.BaseTest;
+import sbca.tests.framework.TestListener;
 
 import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
 
+@Listeners(TestListener.class)
 public class SummaryPageTests extends BaseTest {
 
     @Test
-    public void failingTest() {
+    public void shouldDeliberatelyFail() {
         assertEquals(1, 2);
     }
 }

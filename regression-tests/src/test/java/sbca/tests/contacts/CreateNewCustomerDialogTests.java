@@ -1,14 +1,18 @@
 package sbca.tests.contacts;
 
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import sbca.pageobjects.contacts.ContactsPage;
 import sbca.pageobjects.contacts.CreateNewCustomerDialog;
 import sbca.pageobjects.global.NavigationMenu;
-import sbca.tests.base.BaseTest;
+import sbca.tests.framework.BaseTest;
+import sbca.tests.framework.TestListener;
+
 import java.util.UUID;
 import static org.testng.Assert.assertEquals;
 
+@Listeners(TestListener.class)
 public class CreateNewCustomerDialogTests extends BaseTest {
 
     @BeforeMethod

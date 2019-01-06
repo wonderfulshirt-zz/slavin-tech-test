@@ -60,14 +60,6 @@ public class ContactsPage extends BasePage {
         clickElementWithJS(searchButton);
     }
 
-    public WebElement getNewCustomerButton() { return newCustomerButton; }
-
-    public WebElement getNewSupplierButton() { return newSupplierButton; }
-
-    public WebElement getSearchTextBox() { return searchTextBox; }
-
-    public WebElement getSearchButton() { return searchButton; }
-
     public List<WebElement> getContactsTableRows() {
         waitForElementToBeVisible(contactsTable);
         return contactsTable.findElements(By.xpath(".//tbody/tr"));

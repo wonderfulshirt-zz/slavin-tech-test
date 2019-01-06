@@ -1,6 +1,6 @@
 package sbca.pageobjects.login;
 
-import sbca.framework.core.BasePage;
+import sbca.pageobjects.framework.BasePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;

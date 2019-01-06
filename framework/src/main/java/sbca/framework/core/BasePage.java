@@ -44,7 +44,7 @@ public class BasePage {
         element.sendKeys(text);
     }
 
-    public void clickElementWithJS(WebElement element) {
+    protected void clickElementWithJS(WebElement element) {
         waitForElementToBeClickable(element);
         JavascriptExecutor executor = (JavascriptExecutor)driver;
         executor.executeScript("arguments[0].click();", element);

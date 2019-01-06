@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class CreateNewCustomerDialog extends BasePage {
+public class CreateNewContactDialogBase extends BasePage {
 
     @FindBy(id = "carbon-dialog-title")
     private WebElement dialogTitle;
@@ -34,7 +34,7 @@ public class CreateNewCustomerDialog extends BasePage {
     @FindBy(css = "button[data-element='save']")
     private WebElement saveButton;
 
-    public CreateNewCustomerDialog(WebDriver driver) {
+    public CreateNewContactDialogBase(WebDriver driver) {
         super(driver);
     }
 

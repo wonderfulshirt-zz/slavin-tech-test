@@ -2,7 +2,7 @@
     <test name="Test One">
         <parameter name="test-name" value="Test One"/>
         <classes>
-            <class name="sbca.tests.contacts.CreateNewCustomerDialogTests" />
+            <class name="sbca.tests.contacts.CreateNewCustomerTests" />
         </classes>
     </test>
 </suite>

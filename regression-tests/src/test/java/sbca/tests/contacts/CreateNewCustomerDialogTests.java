@@ -1,6 +1,5 @@
 package sbca.tests.contacts;
 
-import org.openqa.selenium.WebElement;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import sbca.pageobjects.contacts.ContactsPage;
@@ -28,13 +27,14 @@ public class CreateNewCustomerDialogTests extends BaseTest {
         CreateNewCustomerDialog createNewCustomerDialog = new CreateNewCustomerDialog(driver);
         createNewCustomerDialog.setBusinessNameTextBox(businessName);
         createNewCustomerDialog.clickSaveButton();
-        createNewCustomerDialog.waitforSaveButtonToBeInvisible();
+        createNewCustomerDialog.waitForSaveButtonToBeInvisible();
 
         ContactsPage contactsPage = new ContactsPage(driver);
         contactsPage.setSearchTextBox(businessName);
         contactsPage.clickSearchButton();
         contactsPage.waitForNumberOfRecordsTextToEqual("1");
         contactsPage.validateContactsTableCellText(0,3,businessName);
+        contactsPage.clickTableCell(0, 3);
     }
 
     @Test

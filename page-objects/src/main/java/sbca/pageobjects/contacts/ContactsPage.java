@@ -84,7 +84,11 @@ public class ContactsPage extends BasePage {
     }
 
     public void waitForNumberOfRecordsTextToEqual(String text) {
-        wait.until(ExpectedConditions.textToBePresentInElement(numberOfRecordsText, text));
+        waitForElementTextToBe(numberOfRecordsText, text);
+    }
+
+    public void clickTableCell(int row, int cell) {
+        clickElementWithJS(getContactsTableCell(row, cell));
     }
 
 }

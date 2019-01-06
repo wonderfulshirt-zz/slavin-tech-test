@@ -66,9 +66,9 @@ public class CreateNewCustomerDialog extends BasePage {
         clickElementWithJS(saveButton);
     }
 
-    public void waitforSaveButtonToBeInvisible() {
+    public void waitForSaveButtonToBeInvisible() {
         waitForElementToBeInvisible(saveButton);
     }
-    
+
 
 }

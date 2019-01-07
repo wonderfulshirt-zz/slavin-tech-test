@@ -50,4 +50,8 @@ public class BasePage {
         executor.executeScript("arguments[0].click();", element);
     }
 
+    protected String getElementText(WebElement element) {
+        return element.getText();
+    }
+
 }

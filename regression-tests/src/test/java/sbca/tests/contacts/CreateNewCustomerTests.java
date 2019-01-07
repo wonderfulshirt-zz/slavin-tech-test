@@ -45,14 +45,27 @@ public class CreateNewCustomerTests extends BaseTest {
     @Test
     public void shouldCreateCustomerWithAllFieldsComplete() {
         String businessName = UUID.randomUUID().toString();
+        String contactName = "Johann Schmidt";
+        String reference = generateRandomAlphanumericString(10);
+        String email = "techtest@sbca.com";
+        String mobile = "07912345678";
+        String telephone = "01912345678";
+
+        // Inputs
         NewContactDialog newContactDialog = new NewContactDialog((driver));
         newContactDialog.setBusinessNameTextBox(businessName);
+        newContactDialog.setContactNameTextBox(contactName);
+        newContactDialog.setReferenceTextBox(reference);
+        newContactDialog.setEmailTextBox(email);
+        newContactDialog.setMobileTextBox(mobile);
+        newContactDialog.setTelephoneTextBox(telephone);
 
         // Add other inputs here
 
         newContactDialog.clickSaveButton();
         newContactDialog.waitForSaveButtonToBeInvisible();
 
+        // Find record in grid and click
         ContactsPage contactsPage = new ContactsPage(driver);
         contactsPage.setSearchTextBox(businessName);
         contactsPage.clickSearchButton();
@@ -60,9 +73,14 @@ public class CreateNewCustomerTests extends BaseTest {
         contactsPage.validateContactsTableCellText(0,3,businessName);
         contactsPage.clickTableCell(0, 3);
 
+        // Validate inputs on the contact page
         ContactPage contactPage = new ContactPage(driver);
         contactPage.validateContactTitleNameIs(businessName);
         contactPage.validateContactTitleTypeContains("Customer");
+        contactPage.validateContactTitleRefContains(reference);
+        contactPage.validateAddressTileNameIs(contactName);
+        contactPage.validateAddressTilePhoneIs(telephone);
+        contactPage.validateAddressTileEmailIs(email);
 
         // Validate other inputs here
     }

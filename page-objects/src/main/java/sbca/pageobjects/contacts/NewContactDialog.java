@@ -25,11 +25,11 @@ public class NewContactDialog extends BasePage {
     @FindBy(css = "input[name='contact[addresses_attributes][0][contacts_attributes][0][email]']")
     private WebElement emailTextBox;
 
-    @FindBy(css = "input[name='contact[addresses_attributes][0][contacts_attributes][0][mobile]']")
-    private WebElement mobileTextBox;
-
     @FindBy(css = "input[name='contact[addresses_attributes][0][contacts_attributes][0][telephone]']")
     private WebElement telephoneTextBox;
+
+    @FindBy(css = "input[name='contact[addresses_attributes][0][contacts_attributes][0][mobile]']")
+    private WebElement mobileTextBox;
 
     @FindBy(css = "button[data-element='save']")
     private WebElement saveButton;
@@ -60,6 +60,10 @@ public class NewContactDialog extends BasePage {
         enterTextInElement(emailTextBox, text);
     }
 
+    public void setMobileTextBox(String text) {
+        enterTextInElement(mobileTextBox, text);
+    }
+
     public void setTelephoneTextBox(String text) {
         enterTextInElement(telephoneTextBox, text);
     }
@@ -80,4 +84,7 @@ public class NewContactDialog extends BasePage {
         waitForElementToBeVisible(validationSummaryErrors);
     }
 
+    public void getDialogTitleText(String text) {
+        getElementText(dialogTitle);
+    }
 }

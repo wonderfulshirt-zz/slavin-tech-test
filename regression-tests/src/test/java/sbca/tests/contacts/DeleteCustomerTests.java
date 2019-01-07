@@ -34,7 +34,6 @@ public class DeleteCustomerTests extends BaseTest {
 
         contactsPage.setSearchTextBox(businessName);
         contactsPage.clickSearchButton();
-
         contactsPage.waitForNumberOfRecordsTextToEqual("1");
     }
 

@@ -10,9 +10,5 @@
         <module name="regression-tests" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="domain" target="1.8" />
-      <module name="framework" target="1.8" />
-    </bytecodeTargetLevel>
   </component>
 </project>

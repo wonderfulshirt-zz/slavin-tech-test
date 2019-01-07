@@ -1,6 +1,7 @@
 package sbca.pageobjects.contacts;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.StaleElementReferenceException;
 import sbca.pageobjects.framework.BasePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -71,9 +72,19 @@ public class ContactsPage extends BasePage {
     }
 
     private WebElement getContactsTableCell(int row, int cell) {
-        List<WebElement> tableRows = getContactsTableRows();
-        WebElement tableRow = tableRows.get(row);
-        WebElement tableRowCell = tableRow.findElement(By.xpath(".//td[" + cell + "]"));
+        List<WebElement> tableRows;
+        WebElement tableRow;
+        WebElement tableRowCell;
+
+        try {
+            tableRows = getContactsTableRows();
+            tableRow = tableRows.get(row);
+            tableRowCell = tableRow.findElement(By.xpath(".//td[" + cell + "]"));
+        } catch(StaleElementReferenceException e) {
+            tableRows = getContactsTableRows();
+            tableRow = tableRows.get(row);
+            tableRowCell = tableRow.findElement(By.xpath(".//td[" + cell + "]"));
+        }
 
         return tableRowCell;
     }

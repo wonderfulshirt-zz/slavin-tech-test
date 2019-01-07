@@ -95,8 +95,15 @@ public class ContactsPage extends BasePage {
     }
 
     public void validateContactsTableCellText(int row, int cell, String text) {
-        String tableCellText = getContactsTableCellText(row, cell);
-        assertEquals(tableCellText, text);
+        String tableCellText;
+
+        try {
+            tableCellText = getContactsTableCellText(row, cell);
+            assertEquals(tableCellText, text);
+        } catch (AssertionError e) {
+            tableCellText = getContactsTableCellText(row, cell);
+            assertEquals(tableCellText, text);
+        }
     }
 
     public void waitForNumberOfRecordsTextToEqual(String text) {

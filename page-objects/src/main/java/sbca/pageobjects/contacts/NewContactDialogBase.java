@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class CreateNewContactDialogBase extends BasePage {
+public class NewContactDialogBase extends BasePage {
 
     @FindBy(id = "carbon-dialog-title")
     private WebElement dialogTitle;
@@ -40,7 +40,7 @@ public class CreateNewContactDialogBase extends BasePage {
     @FindBy(css = "span[data-element='close']")
     private WebElement closeIcon;
 
-    public CreateNewContactDialogBase(WebDriver driver) {
+    public NewContactDialogBase(WebDriver driver) {
         super(driver);
     }
 

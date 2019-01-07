@@ -25,10 +25,10 @@ public class CreateNewCustomerTests extends BaseTest {
     @Test
     public void shouldCreateCustomerWithOnlyRequiredFields() {
         String businessName = UUID.randomUUID().toString();
-        CreateNewCustomerContactDialog createNewCustomerContactDialog = new CreateNewCustomerContactDialog((driver));
-        createNewCustomerContactDialog.setBusinessNameTextBox(businessName);
-        createNewCustomerContactDialog.clickSaveButton();
-        createNewCustomerContactDialog.waitForSaveButtonToBeInvisible();
+        NewCustomerContactDialog newCustomerContactDialog = new NewCustomerContactDialog((driver));
+        newCustomerContactDialog.setBusinessNameTextBox(businessName);
+        newCustomerContactDialog.clickSaveButton();
+        newCustomerContactDialog.waitForSaveButtonToBeInvisible();
 
         ContactsPage contactsPage = new ContactsPage(driver);
         contactsPage.setSearchTextBox(businessName);
@@ -50,10 +50,10 @@ public class CreateNewCustomerTests extends BaseTest {
 
     @Test
     public void shouldNotCreateCustomerWithBusinessNameOmitted() {
-        CreateNewCustomerContactDialog createNewCustomerContactDialog = new CreateNewCustomerContactDialog((driver));
-        createNewCustomerContactDialog.setBusinessNameTextBox("");
-        createNewCustomerContactDialog.clickSaveButton();
-        createNewCustomerContactDialog.waitForValidationSummaryErrorsToBeVisible();
+        NewCustomerContactDialog newCustomerContactDialog = new NewCustomerContactDialog((driver));
+        newCustomerContactDialog.setBusinessNameTextBox("");
+        newCustomerContactDialog.clickSaveButton();
+        newCustomerContactDialog.waitForValidationSummaryErrorsToBeVisible();
     }
 
 }

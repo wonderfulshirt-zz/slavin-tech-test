@@ -7,13 +7,19 @@ import org.openqa.selenium.support.FindBy;
 
 public class DeleteContactDialog extends BasePage {
 
-    @FindBy(css = "button[class='primary button'][text()='Yes']")
+    @FindBy(css = "span[data-role='confirm']")
     private WebElement yesButton;
 
     public DeleteContactDialog(WebDriver driver) {
         super(driver);
     }
 
-    public void clickYesButton() { clickElementWithJS(yesButton); }
+    public void clickYesButton() {
+        clickElementWithJS(yesButton);
+    }
+
+    public void waitForYesButtonToBeInvisible() {
+        waitForElementToBeInvisible(yesButton);
+    }
 
 }

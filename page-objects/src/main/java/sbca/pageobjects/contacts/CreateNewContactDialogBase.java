@@ -69,7 +69,7 @@ public class CreateNewContactDialogBase extends BasePage {
     }
 
     public void clickCloseIcon() {
-        clickElementWithJS(closeIcon);
+        closeIcon.click();
     }
 
     public void waitForSaveButtonToBeInvisible() {

@@ -53,12 +53,6 @@ public class BaseTest {
         }
     }
 
-//    @AfterMethod
-//    public void afterMethod(ITestResult result) {
-//        String methodName = result.getMethod().getMethodName();
-//        String status = result.getStatus(;
-//    }
-
     public void takeScreenshot(String testMethodName) {
         String workingDir = System.getProperty("user.dir");
         File screenshotsDir = new File(workingDir + "\\screenshots");
@@ -76,40 +70,4 @@ public class BaseTest {
         }
     }
 
-//    public static void takeSnapShot(WebDriver webdriver, String fileWithPath) throws Exception{
-//
-//        //Convert web driver object to TakeScreenshot
-//        TakesScreenshot scrShot = ((TakesScreenshot)webdriver);
-//
-//        //Call getScreenshotAs method to create image file
-//        File SrcFile = scrShot.getScreenshotAs(OutputType.FILE);
-//
-//        //Move image file to new destination
-//        File DestFile = new File(fileWithPath);
-//
-//        //Copy file at destination
-//        FileUtils.copyFile(SrcFile, DestFile);
-//
-//    }
-//
-//    private void takeScreenshot(String className, String method, LocalTime timestamp) {
-//        if (driver instanceof TakesScreenshot) {
-//            TakesScreenshot screenshotTakingDriver = (TakesScreenshot) this.driver;
-//            try {
-//                File localScreenshots = new File(new File("target"), "screenshots");
-//                if (!localScreenshots.exists() || !localScreenshots.isDirectory()) {
-//                    localScreenshots.mkdirs();
-//                }
-//                File screenshot = new File(localScreenshots, className + "_" + method + "_" + timestamp.getHour() + "." + timestamp.getMinute() + ".png");
-//                FileUtils.moveFile(screenshotTakingDriver.getScreenshotAs(OutputType.FILE), screenshot);
-//                //logger.info("Screenshot for class={} method={} saved in: {}", className, method, screenshot.getAbsolutePath());
-//                System.out.println("Screenshot saved.");
-//            } catch (Exception e1) {
-//                //logger.error("Unable to take screenshot", e1);
-//            }
-//        } else {
-//            System.out.println("Can't take screenshots so skipping it.");
-//            //logger.info("Driver '{}' can't take screenshots so skipping it.", driver.getClass());
-//        }
-//    }
 }

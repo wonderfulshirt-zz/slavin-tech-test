@@ -62,15 +62,15 @@ public class ContactsPage extends BasePage {
     }
 
     public void clickDeleteIcon() {
-        clickElementWithJS(deleteIcon);
+        deleteIcon.click();
     }
 
-    public List<WebElement> getContactsTableRows() {
+    private List<WebElement> getContactsTableRows() {
         waitForElementToBeVisible(contactsTable);
         return contactsTable.findElements(By.xpath(".//tbody/tr"));
     }
 
-    public WebElement getContactsTableCell(int row, int cell) {
+    private WebElement getContactsTableCell(int row, int cell) {
         List<WebElement> tableRows = getContactsTableRows();
         WebElement tableRow = tableRows.get(row);
         WebElement tableRowCell = tableRow.findElement(By.xpath(".//td[" + cell + "]"));
@@ -78,7 +78,7 @@ public class ContactsPage extends BasePage {
         return tableRowCell;
     }
 
-    public String getContactsTableCellText(int row, int cell) {
+    private String getContactsTableCellText(int row, int cell) {
         WebElement tableCell = getContactsTableCell(row, cell);
         return tableCell.getText();
     }
@@ -96,6 +96,8 @@ public class ContactsPage extends BasePage {
         clickElementWithJS(getContactsTableCell(row, cell));
     }
 
-    public void clickTableRowCheckbox(int row) { clickElementWithJS(getContactsTableCell(row, 1)); }
+    public void clickTableRowCheckbox(int row) {
+        getContactsTableCell(row, 1).click();
+    }
 
 }

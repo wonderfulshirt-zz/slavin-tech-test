@@ -27,7 +27,6 @@ public class DeleteCustomerTests extends BaseTest {
         contactsPage.clickSearchButton();
         contactsPage.clickNewCustomerButton();
 
-        //String businessName = UUID.randomUUID().toString();
         CreateNewCustomerContactDialog createNewCustomerContactDialog = new CreateNewCustomerContactDialog((driver));
         createNewCustomerContactDialog.setBusinessNameTextBox(businessName);
         createNewCustomerContactDialog.clickSaveButton();
@@ -35,8 +34,8 @@ public class DeleteCustomerTests extends BaseTest {
 
         contactsPage.setSearchTextBox(businessName);
         contactsPage.clickSearchButton();
+
         contactsPage.waitForNumberOfRecordsTextToEqual("1");
-        contactsPage.validateContactsTableCellText(0,3,businessName);
     }
 
     @Test
@@ -47,6 +46,7 @@ public class DeleteCustomerTests extends BaseTest {
 
         DeleteContactDialog deleteContactDialog = new DeleteContactDialog(driver);
         deleteContactDialog.clickYesButton();
+        deleteContactDialog.waitForYesButtonToBeInvisible();
 
         contactsPage.setSearchTextBox(getBusinessContactName());
         contactsPage.clickSearchButton();

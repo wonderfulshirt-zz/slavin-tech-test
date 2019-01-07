@@ -25,7 +25,6 @@ public class CreateNewCustomerTests extends BaseTest {
     @Test
     public void shouldCreateCustomerWithOnlyRequiredFields() {
         String businessName = UUID.randomUUID().toString();
-        //CreateNewContactDialogBase createNewContactDialogBase = new CreateNewContactDialogBase(driver);
         CreateNewCustomerContactDialog createNewCustomerContactDialog = new CreateNewCustomerContactDialog((driver));
         createNewCustomerContactDialog.setBusinessNameTextBox(businessName);
         createNewCustomerContactDialog.clickSaveButton();
@@ -35,12 +34,13 @@ public class CreateNewCustomerTests extends BaseTest {
         contactsPage.setSearchTextBox(businessName);
         contactsPage.clickSearchButton();
         contactsPage.waitForNumberOfRecordsTextToEqual("1");
+        contactsPage = new ContactsPage(driver);
         contactsPage.validateContactsTableCellText(0,3,businessName);
         contactsPage.clickTableCell(0, 3);
 
         CustomerPageMain customerPageMain = new CustomerPageMain(driver);
-        customerPageMain.validateContactTitleName(businessName);
-        customerPageMain.validateContactTitleType("Customer");
+        customerPageMain.validateContactTitleNameIs(businessName);
+        customerPageMain.validateContactTitleTypeIsCustomer();
     }
 
     @Test

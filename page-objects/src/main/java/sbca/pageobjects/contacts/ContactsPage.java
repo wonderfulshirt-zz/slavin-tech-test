@@ -1,10 +1,7 @@
 package sbca.pageobjects.contacts;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.StaleElementReferenceException;
+import org.openqa.selenium.*;
 import sbca.pageobjects.framework.BasePage;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import static org.testng.Assert.assertEquals;
@@ -95,14 +92,10 @@ public class ContactsPage extends BasePage {
     }
 
     public void validateContactsTableCellText(int row, int cell, String text) {
-        String tableCellText;
-
         try {
-            tableCellText = getContactsTableCellText(row, cell);
-            assertEquals(tableCellText, text);
-        } catch (AssertionError e) {
-            tableCellText = getContactsTableCellText(row, cell);
-            assertEquals(tableCellText, text);
+            waitForElementTextToBe(getContactsTableCell(row, cell), text);
+        } catch (TimeoutException e) {
+            waitForElementTextToBe(getContactsTableCell(row, cell), text);
         }
     }
 

@@ -12,12 +12,12 @@ import java.util.UUID;
 @Listeners(TestListener.class)
 public class DeleteCustomerTests extends BaseTest {
 
-    private String businessContactName;
+    private String contactBusinessName;
 
     @BeforeMethod
     public void shouldCreateNewCustomer() {
-        setBusinessContactName(UUID.randomUUID().toString());
-        String businessName = getBusinessContactName();
+        setContactBusinessName(UUID.randomUUID().toString());
+        String businessName = getContactBusinessName();
 
         NavigationMenu navigationMenu = new NavigationMenu(driver);
         navigationMenu.clickContactsMenuItem();
@@ -35,6 +35,7 @@ public class DeleteCustomerTests extends BaseTest {
         contactsPage.setSearchTextBox(businessName);
         contactsPage.clickSearchButton();
         contactsPage.waitForNumberOfRecordsTextToEqual("1");
+        contactsPage.validateContactsTableCellText(0, 3, businessName);
     }
 
     @Test
@@ -47,17 +48,17 @@ public class DeleteCustomerTests extends BaseTest {
         deleteContactDialog.clickYesButton();
         deleteContactDialog.waitForYesButtonToBeInvisible();
 
-        contactsPage.setSearchTextBox(getBusinessContactName());
+        contactsPage.setSearchTextBox(getContactBusinessName());
         contactsPage.clickSearchButton();
         contactsPage.waitForNumberOfRecordsTextToEqual("0");
     }
 
-    public void setBusinessContactName(String businessContactName) {
-        this.businessContactName = businessContactName;
+    public void setContactBusinessName(String contactBusinessName) {
+        this.contactBusinessName = contactBusinessName;
     }
 
-    public String getBusinessContactName() {
-        return businessContactName;
+    public String getContactBusinessName() {
+        return contactBusinessName;
     }
 
 }

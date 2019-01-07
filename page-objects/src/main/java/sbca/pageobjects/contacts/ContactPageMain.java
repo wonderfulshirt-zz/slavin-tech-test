@@ -25,8 +25,4 @@ public class ContactPageMain extends BasePage {
     public void validateContactTitleTypeIs(String text) {
         Assert.assertTrue(contactTitleType.getText().contains(text));
     }
-
-    public void validateContactTitleTypeIsSupplier() {
-        waitForElementTextToBe(contactTitleType, " (Supplier)");
-    }
 }

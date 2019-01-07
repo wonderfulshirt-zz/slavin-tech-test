@@ -45,9 +45,9 @@ public class CreateNewCustomerTests extends BaseTest {
     @Test
     public void shouldCreateCustomerWithAllFieldsComplete() {
         String businessName = UUID.randomUUID().toString();
-        String contactName = "Johann Schmidt";
+        String contactName = "John Customer";
         String reference = generateRandomAlphanumericString(10);
-        String email = "techtest@sbca.com";
+        String email = "techtestcustomer@sbca.com";
         String mobile = "07912345678";
         String telephone = "01912345678";
 

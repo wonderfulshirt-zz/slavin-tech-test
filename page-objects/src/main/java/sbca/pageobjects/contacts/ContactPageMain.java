@@ -22,7 +22,7 @@ public class ContactPageMain extends BasePage {
         waitForElementTextToBe(contactTitleName, text);
     }
 
-    public void validateContactTitleTypeIs(String text) {
+    public void validateContactTitleTypeContains(String text) {
         Assert.assertTrue(contactTitleType.getText().contains(text));
     }
 }

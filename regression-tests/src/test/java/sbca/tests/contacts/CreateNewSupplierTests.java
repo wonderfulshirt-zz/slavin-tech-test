@@ -41,12 +41,33 @@ public class CreateNewSupplierTests extends BaseTest {
 
         ContactPageMain contactPageMain = new ContactPageMain(driver);
         contactPageMain.validateContactTitleNameIs(businessName);
-        contactPageMain.validateContactTitleTypeIs("Supplier");
+        contactPageMain.validateContactTitleTypeContains("Supplier");
     }
 
     @Test
     public void shouldCreateSupplierWithAllFieldsComplete() {
-        // complete every field and save. Validate values entered on the customer record screen.
+        String businessName = UUID.randomUUID().toString();
+        NewContactDialogBase newContactDialogBase = new NewContactDialogBase((driver));
+        newContactDialogBase.setBusinessNameTextBox(businessName);
+
+        // Add other inputs here
+
+        newContactDialogBase.clickSaveButton();
+        newContactDialogBase.waitForSaveButtonToBeInvisible();
+
+        ContactsPage contactsPage = new ContactsPage(driver);
+        contactsPage.setSearchTextBox(businessName);
+        contactsPage.clickSearchButton();
+        contactsPage.waitForNumberOfRecordsTextToEqual("1");
+        contactsPage = new ContactsPage(driver);
+        contactsPage.validateContactsTableCellText(0,3,businessName);
+        contactsPage.clickTableCell(0, 3);
+
+        ContactPageMain contactPageMain = new ContactPageMain(driver);
+        contactPageMain.validateContactTitleNameIs(businessName);
+        contactPageMain.validateContactTitleTypeContains("Supplier");
+
+        // Validate other inputs here
     }
 
     @Test

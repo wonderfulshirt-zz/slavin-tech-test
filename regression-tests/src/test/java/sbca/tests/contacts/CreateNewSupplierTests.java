@@ -35,7 +35,6 @@ public class CreateNewSupplierTests extends BaseTest {
         contactsPage.setSearchTextBox(businessName);
         contactsPage.clickSearchButton();
         contactsPage.waitForNumberOfRecordsTextToEqual("1");
-        contactsPage = new ContactsPage(driver);
         contactsPage.validateContactsTableCellText(0,3,businessName);
         contactsPage.clickTableCell(0, 3);
 
@@ -59,7 +58,6 @@ public class CreateNewSupplierTests extends BaseTest {
         contactsPage.setSearchTextBox(businessName);
         contactsPage.clickSearchButton();
         contactsPage.waitForNumberOfRecordsTextToEqual("1");
-        contactsPage = new ContactsPage(driver);
         contactsPage.validateContactsTableCellText(0,3,businessName);
         contactsPage.clickTableCell(0, 3);
 

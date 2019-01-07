@@ -11,7 +11,7 @@ import static org.testng.Assert.assertEquals;
 public class SummaryPageTests extends BaseTest {
 
     @Test
-    public void shouldDeliberatelyFail() {
+    public void shouldFailBecauseOneDoesNotEqualTwo() {
         assertEquals(1, 2);
     }
 }

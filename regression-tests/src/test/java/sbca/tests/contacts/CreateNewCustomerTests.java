@@ -34,7 +34,6 @@ public class CreateNewCustomerTests extends BaseTest {
         contactsPage.setSearchTextBox(businessName);
         contactsPage.clickSearchButton();
         contactsPage.waitForNumberOfRecordsTextToEqual("1");
-        contactsPage = new ContactsPage(driver);
         contactsPage.validateContactsTableCellText(0,3,businessName);
         contactsPage.clickTableCell(0, 3);
 
@@ -58,7 +57,6 @@ public class CreateNewCustomerTests extends BaseTest {
         contactsPage.setSearchTextBox(businessName);
         contactsPage.clickSearchButton();
         contactsPage.waitForNumberOfRecordsTextToEqual("1");
-        contactsPage = new ContactsPage(driver);
         contactsPage.validateContactsTableCellText(0,3,businessName);
         contactsPage.clickTableCell(0, 3);
 
@@ -75,6 +73,15 @@ public class CreateNewCustomerTests extends BaseTest {
         newContactDialogBase.setBusinessNameTextBox("");
         newContactDialogBase.clickSaveButton();
         newContactDialogBase.waitForValidationSummaryErrorsToBeVisible();
+    }
+
+    @Test
+    public void shouldFailBecauseBusinessNameIsARequiredField() {
+        NewContactDialogBase newContactDialogBase = new NewContactDialogBase((driver));
+        newContactDialogBase.setBusinessNameTextBox("");
+        newContactDialogBase.clickSaveButton();
+        // Validation stops the form from closing, so this step will fail
+        newContactDialogBase.waitForSaveButtonToBeInvisible();
     }
 
 }

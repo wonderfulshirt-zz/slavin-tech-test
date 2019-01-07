@@ -29,11 +29,13 @@ public class BaseTest {
         String path = System.getProperty("user.dir");
         System.out.println(path);
 
+        String separator = System.getProperty("file.separator");
+
         // WHEN RUNNING WITH MVN
-        System.setProperty("webdriver.chrome.driver", path + "\\classes\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", path + separator + "classes" + separator + "chromedriver.exe");
 
         // WHEN RUNNING WITH A TESTNG RUN CONFIG IN THE IDE
-//        System.setProperty("webdriver.chrome.driver", path + "\\target\\classes\\chromedriver.exe");
+//        System.setProperty("webdriver.chrome.driver", path + separator + "target" + separator + "classes" + separator + "chromedriver.exe");
 
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);

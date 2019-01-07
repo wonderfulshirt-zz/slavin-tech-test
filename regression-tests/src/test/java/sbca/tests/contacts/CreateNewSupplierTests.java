@@ -24,12 +24,12 @@ public class CreateNewSupplierTests extends BaseTest {
     }
 
     @Test
-    public void shouldCreateCustomerWithOnlyRequiredFields() {
+    public void shouldCreateSupplierWithOnlyRequiredFields() {
         String businessName = UUID.randomUUID().toString();
-        NewSupplierContactDialog newSupplierContactDialog = new NewSupplierContactDialog((driver));
-        newSupplierContactDialog.setBusinessNameTextBox(businessName);
-        newSupplierContactDialog.clickSaveButton();
-        newSupplierContactDialog.waitForSaveButtonToBeInvisible();
+        NewContactDialogBase newContactDialogBase = new NewContactDialogBase((driver));
+        newContactDialogBase.setBusinessNameTextBox(businessName);
+        newContactDialogBase.clickSaveButton();
+        newContactDialogBase.waitForSaveButtonToBeInvisible();
 
         ContactsPage contactsPage = new ContactsPage(driver);
         contactsPage.setSearchTextBox(businessName);
@@ -45,16 +45,16 @@ public class CreateNewSupplierTests extends BaseTest {
     }
 
     @Test
-    public void shouldCreateCustomerWithAllFieldsComplete() {
+    public void shouldCreateSupplierWithAllFieldsComplete() {
         // complete every field and save. Validate values entered on the customer record screen.
     }
 
     @Test
-    public void shouldNotCreateCustomerWithBusinessNameOmitted() {
-        NewSupplierContactDialog newSupplierContactDialog = new NewSupplierContactDialog((driver));
-        newSupplierContactDialog.setBusinessNameTextBox("");
-        newSupplierContactDialog.clickSaveButton();
-        newSupplierContactDialog.waitForValidationSummaryErrorsToBeVisible();
+    public void shouldNotCreateSupplierWithBusinessNameOmitted() {
+        NewContactDialogBase newContactDialogBase = new NewContactDialogBase((driver));
+        newContactDialogBase.setBusinessNameTextBox("");
+        newContactDialogBase.clickSaveButton();
+        newContactDialogBase.waitForValidationSummaryErrorsToBeVisible();
     }
 
 }

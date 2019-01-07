@@ -39,10 +39,6 @@ public class ContactsPage extends BasePage {
         super(driver);
     }
 
-    public boolean isInitialized() {
-        return newCustomerButton.isDisplayed();
-    }
-
     public void clickNewCustomerButton() {
         newCustomerButton.click();
     }
@@ -69,26 +65,18 @@ public class ContactsPage extends BasePage {
     }
 
     private WebElement getContactsTableCell(int row, int cell) {
-        List<WebElement> tableRows;
         WebElement tableRow;
         WebElement tableRowCell;
 
         try {
-            tableRows = getContactsTableRows();
-            tableRow = tableRows.get(row);
+            tableRow = getContactsTableRows().get(row);
             tableRowCell = tableRow.findElement(By.xpath(".//td[" + cell + "]"));
         } catch(StaleElementReferenceException e) {
-            tableRows = getContactsTableRows();
-            tableRow = tableRows.get(row);
+            tableRow = getContactsTableRows().get(row);
             tableRowCell = tableRow.findElement(By.xpath(".//td[" + cell + "]"));
         }
 
         return tableRowCell;
-    }
-
-    private String getContactsTableCellText(int row, int cell) {
-        WebElement tableCell = getContactsTableCell(row, cell);
-        return tableCell.getText();
     }
 
     public void validateContactsTableCellText(int row, int cell, String text) {

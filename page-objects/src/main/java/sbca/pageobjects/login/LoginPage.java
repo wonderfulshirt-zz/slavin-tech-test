@@ -7,9 +7,6 @@ import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends BasePage {
 
-    @FindBy(tagName = "h2")
-    private WebElement pagetTitle;
-
     @FindBy(id = "sso_Email")
     private WebElement emailTextBox;
 

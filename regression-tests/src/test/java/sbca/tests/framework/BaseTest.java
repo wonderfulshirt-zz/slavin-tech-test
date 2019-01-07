@@ -39,6 +39,7 @@ public class BaseTest {
 
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
 
         LoginPage loginPage = new LoginPage(driver);
         driver.get("https://app.sageone.com/login");

@@ -6,7 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class ContactPageMain extends BasePage {
+public class ContactPage extends BasePage {
 
     @FindBy(css = "span[class='contact-header__title-name']")
     private WebElement contactTitleName;
@@ -14,7 +14,7 @@ public class ContactPageMain extends BasePage {
     @FindBy(css = "span[class='contact-header__title-type']")
     private WebElement contactTitleType;
 
-    public ContactPageMain(WebDriver driver) {
+    public ContactPage(WebDriver driver) {
         super(driver);
     }
 

@@ -25,10 +25,10 @@ public class CreateNewCustomerTests extends BaseTest {
     @Test
     public void shouldCreateCustomerWithOnlyRequiredFields() {
         String businessName = UUID.randomUUID().toString();
-        NewContactDialogBase newContactDialogBase = new NewContactDialogBase((driver));
-        newContactDialogBase.setBusinessNameTextBox(businessName);
-        newContactDialogBase.clickSaveButton();
-        newContactDialogBase.waitForSaveButtonToBeInvisible();
+        NewContactDialog newContactDialog = new NewContactDialog((driver));
+        newContactDialog.setBusinessNameTextBox(businessName);
+        newContactDialog.clickSaveButton();
+        newContactDialog.waitForSaveButtonToBeInvisible();
 
         ContactsPage contactsPage = new ContactsPage(driver);
         contactsPage.setSearchTextBox(businessName);
@@ -37,21 +37,21 @@ public class CreateNewCustomerTests extends BaseTest {
         contactsPage.validateContactsTableCellText(0,3,businessName);
         contactsPage.clickTableCell(0, 3);
 
-        ContactPageMain contactPageMain = new ContactPageMain(driver);
-        contactPageMain.validateContactTitleNameIs(businessName);
-        contactPageMain.validateContactTitleTypeContains("Customer");
+        ContactPage contactPage = new ContactPage(driver);
+        contactPage.validateContactTitleNameIs(businessName);
+        contactPage.validateContactTitleTypeContains("Customer");
     }
 
     @Test
     public void shouldCreateCustomerWithAllFieldsComplete() {
         String businessName = UUID.randomUUID().toString();
-        NewContactDialogBase newContactDialogBase = new NewContactDialogBase((driver));
-        newContactDialogBase.setBusinessNameTextBox(businessName);
+        NewContactDialog newContactDialog = new NewContactDialog((driver));
+        newContactDialog.setBusinessNameTextBox(businessName);
 
         // Add other inputs here
 
-        newContactDialogBase.clickSaveButton();
-        newContactDialogBase.waitForSaveButtonToBeInvisible();
+        newContactDialog.clickSaveButton();
+        newContactDialog.waitForSaveButtonToBeInvisible();
 
         ContactsPage contactsPage = new ContactsPage(driver);
         contactsPage.setSearchTextBox(businessName);
@@ -60,28 +60,28 @@ public class CreateNewCustomerTests extends BaseTest {
         contactsPage.validateContactsTableCellText(0,3,businessName);
         contactsPage.clickTableCell(0, 3);
 
-        ContactPageMain contactPageMain = new ContactPageMain(driver);
-        contactPageMain.validateContactTitleNameIs(businessName);
-        contactPageMain.validateContactTitleTypeContains("Customer");
+        ContactPage contactPage = new ContactPage(driver);
+        contactPage.validateContactTitleNameIs(businessName);
+        contactPage.validateContactTitleTypeContains("Customer");
 
         // Validate other inputs here
     }
 
     @Test
     public void shouldNotCreateCustomerWithBusinessNameOmitted() {
-        NewContactDialogBase newContactDialogBase = new NewContactDialogBase((driver));
-        newContactDialogBase.setBusinessNameTextBox("");
-        newContactDialogBase.clickSaveButton();
-        newContactDialogBase.waitForValidationSummaryErrorsToBeVisible();
+        NewContactDialog newContactDialog = new NewContactDialog((driver));
+        newContactDialog.setBusinessNameTextBox("");
+        newContactDialog.clickSaveButton();
+        newContactDialog.waitForValidationSummaryErrorsToBeVisible();
     }
 
     @Test
     public void shouldFailBecauseBusinessNameIsARequiredField() {
-        NewContactDialogBase newContactDialogBase = new NewContactDialogBase((driver));
-        newContactDialogBase.setBusinessNameTextBox("");
-        newContactDialogBase.clickSaveButton();
+        NewContactDialog newContactDialog = new NewContactDialog((driver));
+        newContactDialog.setBusinessNameTextBox("");
+        newContactDialog.clickSaveButton();
         // Validation stops the form from closing, so this step will fail
-        newContactDialogBase.waitForSaveButtonToBeInvisible();
+        newContactDialog.waitForSaveButtonToBeInvisible();
     }
 
 }

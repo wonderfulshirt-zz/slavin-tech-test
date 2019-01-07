@@ -27,10 +27,10 @@ public class DeleteCustomerTests extends BaseTest {
         contactsPage.clickSearchButton();
         contactsPage.clickNewCustomerButton();
 
-        NewContactDialogBase newContactDialogBase = new NewContactDialogBase((driver));
-        newContactDialogBase.setBusinessNameTextBox(businessName);
-        newContactDialogBase.clickSaveButton();
-        newContactDialogBase.waitForSaveButtonToBeInvisible();
+        NewContactDialog newContactDialog = new NewContactDialog((driver));
+        newContactDialog.setBusinessNameTextBox(businessName);
+        newContactDialog.clickSaveButton();
+        newContactDialog.waitForSaveButtonToBeInvisible();
 
         contactsPage.setSearchTextBox(businessName);
         contactsPage.clickSearchButton();

@@ -7,10 +7,11 @@ import sbca.pageobjects.contacts.*;
 import sbca.pageobjects.global.NavigationMenu;
 import sbca.tests.framework.BaseTest;
 import sbca.tests.framework.TestListener;
+
 import java.util.UUID;
 
 @Listeners(TestListener.class)
-public class CreateNewCustomerTests extends BaseTest {
+public class CreateNewSupplierTests extends BaseTest {
 
     @BeforeMethod
     public void shouldLoadContactsPageViaGlobalNavigationMenu() {
@@ -19,16 +20,16 @@ public class CreateNewCustomerTests extends BaseTest {
         ContactsPage contactsPage = new ContactsPage(driver);
         contactsPage.setSearchTextBox("");
         contactsPage.clickSearchButton();
-        contactsPage.clickNewCustomerButton();
+        contactsPage.clickNewSupplierButton();
     }
 
     @Test
     public void shouldCreateCustomerWithOnlyRequiredFields() {
         String businessName = UUID.randomUUID().toString();
-        CreateNewCustomerContactDialog createNewCustomerContactDialog = new CreateNewCustomerContactDialog((driver));
-        createNewCustomerContactDialog.setBusinessNameTextBox(businessName);
-        createNewCustomerContactDialog.clickSaveButton();
-        createNewCustomerContactDialog.waitForSaveButtonToBeInvisible();
+        CreateNewSupplierContactDialog createNewSupplierContactDialog = new CreateNewSupplierContactDialog((driver));
+        createNewSupplierContactDialog.setBusinessNameTextBox(businessName);
+        createNewSupplierContactDialog.clickSaveButton();
+        createNewSupplierContactDialog.waitForSaveButtonToBeInvisible();
 
         ContactsPage contactsPage = new ContactsPage(driver);
         contactsPage.setSearchTextBox(businessName);
@@ -40,7 +41,7 @@ public class CreateNewCustomerTests extends BaseTest {
 
         ContactPageMain contactPageMain = new ContactPageMain(driver);
         contactPageMain.validateContactTitleNameIs(businessName);
-        contactPageMain.validateContactTitleTypeIs("Customer");
+        contactPageMain.validateContactTitleTypeIs("Supplier");
     }
 
     @Test
@@ -50,10 +51,10 @@ public class CreateNewCustomerTests extends BaseTest {
 
     @Test
     public void shouldNotCreateCustomerWithBusinessNameOmitted() {
-        CreateNewCustomerContactDialog createNewCustomerContactDialog = new CreateNewCustomerContactDialog((driver));
-        createNewCustomerContactDialog.setBusinessNameTextBox("");
-        createNewCustomerContactDialog.clickSaveButton();
-        createNewCustomerContactDialog.waitForValidationSummaryErrorsToBeVisible();
+        CreateNewSupplierContactDialog createNewSupplierContactDialog = new CreateNewSupplierContactDialog((driver));
+        createNewSupplierContactDialog.setBusinessNameTextBox("");
+        createNewSupplierContactDialog.clickSaveButton();
+        createNewSupplierContactDialog.waitForValidationSummaryErrorsToBeVisible();
     }
 
 }

@@ -29,10 +29,10 @@ public class ContactsPage extends BasePage {
     @FindBy(css = "span[class='records'")
     private WebElement numberOfRecordsText;
 
-    @FindBy(css = "a[data-role='primary_action']")
+    @FindBy(css = "div[data-role='new_customer']")
     private WebElement newCustomerButton;
 
-    @FindBy(css = "a[data-role='new_vendor']")
+    @FindBy(css = "div[data-role='new_vendor']")
     private WebElement newSupplierButton;
 
     @FindBy(css = "i[class='icon-bulk_destroy']")
@@ -47,11 +47,11 @@ public class ContactsPage extends BasePage {
     }
 
     public void clickNewCustomerButton() {
-        clickElementWithJS(newCustomerButton);
+        newCustomerButton.click();
     }
 
     public void clickNewSupplierButton() {
-        clickElementWithJS(newSupplierButton);
+        newSupplierButton.click();
     }
 
     public void setSearchTextBox(String text) {

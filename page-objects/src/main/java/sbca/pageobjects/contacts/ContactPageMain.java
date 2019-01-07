@@ -6,7 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class CustomerPageMain extends BasePage {
+public class ContactPageMain extends BasePage {
 
     @FindBy(css = "span[class='contact-header__title-name']")
     private WebElement contactTitleName;
@@ -14,7 +14,7 @@ public class CustomerPageMain extends BasePage {
     @FindBy(css = "span[class='contact-header__title-type']")
     private WebElement contactTitleType;
 
-    public CustomerPageMain(WebDriver driver) {
+    public ContactPageMain(WebDriver driver) {
         super(driver);
     }
 
@@ -22,9 +22,8 @@ public class CustomerPageMain extends BasePage {
         waitForElementTextToBe(contactTitleName, text);
     }
 
-    public void validateContactTitleTypeIsCustomer() {
-        //waitForElementTextToBe(contactTitleType, " (Customer)");
-        Assert.assertTrue(contactTitleType.getText().contains("Customer"));
+    public void validateContactTitleTypeIs(String text) {
+        Assert.assertTrue(contactTitleType.getText().contains(text));
     }
 
     public void validateContactTitleTypeIsSupplier() {

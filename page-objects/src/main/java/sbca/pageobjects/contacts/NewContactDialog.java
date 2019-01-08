@@ -40,6 +40,9 @@ public class NewContactDialog extends BasePage {
     @FindBy(css = "span[data-element='close']")
     private WebElement closeIcon;
 
+    @FindBy(id = "invoiceDelivery-tab")
+    private WebElement accountDetailsTab;
+
     public NewContactDialog(WebDriver driver) {
         super(driver);
     }
@@ -87,4 +90,13 @@ public class NewContactDialog extends BasePage {
     public void getDialogTitleText(String text) {
         getElementText(dialogTitle);
     }
+
+    public void clickAccountDetailsTab() {
+        accountDetailsTab.click();
+    }
+
+    public String getAccountDetailsTabSelectedState() {
+        return accountDetailsTab.getAttribute("aria-selected");
+    }
+
 }

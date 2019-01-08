@@ -1,5 +1,6 @@
 package sbca.tests.contacts;
 
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
@@ -50,6 +51,8 @@ public class CreateNewCustomerTests extends BaseTest {
         String email = "techtestcustomer@sbca.com";
         String mobile = "07912345678";
         String telephone = "01912345678";
+        String address1 = "Customer Address 1";
+        String address2 = "Customer Address 2";
 
         // Inputs
         NewContactDialog newContactDialog = new NewContactDialog((driver));
@@ -60,6 +63,12 @@ public class CreateNewCustomerTests extends BaseTest {
         newContactDialog.setMobileTextBox(mobile);
         newContactDialog.setTelephoneTextBox(telephone);
 
+        newContactDialog.clickAccountDetailsTab();
+        Assert.assertEquals(newContactDialog.getAccountDetailsTabSelectedState(), "true");
+
+        NewContactDialogAccountDetailsTab accountDetailsTab = new NewContactDialogAccountDetailsTab(driver);
+        accountDetailsTab.setAddressLine1(address1);
+        accountDetailsTab.setAddressLine2(address2);
         // Add other inputs here
 
         newContactDialog.clickSaveButton();

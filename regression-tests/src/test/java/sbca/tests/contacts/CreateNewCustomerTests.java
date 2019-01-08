@@ -103,11 +103,11 @@ public class CreateNewCustomerTests extends BaseTest {
     }
 
     @Test
-    public void shouldFailBecauseBusinessNameIsARequiredField() {
+    public void shouldFailBecauseTheNewContactDialogIsStillOpen() {
         NewContactDialog newContactDialog = new NewContactDialog((driver));
         newContactDialog.setBusinessNameTextBox("");
         newContactDialog.clickSaveButton();
-        // Validation stops the form from closing, so this step will fail
+        // Validation on the Business Name field stops the form from closing, so this step will fail
         newContactDialog.waitForSaveButtonToBeInvisible();
     }
 

@@ -27,7 +27,7 @@ public class BaseTest {
         String separator = System.getProperty("file.separator");
 
         // WHEN RUNNING WITH MVN
-        System.setProperty("webdriver.chrome.driver", path + separator + "classes" + separator + "chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", path + separator + "test-classes" + separator + "chromedriver.exe");
 
         // WHEN RUNNING WITH A TESTNG RUN CONFIG IN THE IDE
 //        System.setProperty("webdriver.chrome.driver", path + separator + "target" + separator + "classes" + separator + "chromedriver.exe");

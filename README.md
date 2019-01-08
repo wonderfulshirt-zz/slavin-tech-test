@@ -3,7 +3,7 @@
 ## Development environment:
 Windows 10 x64  
 IntelliJ IDEA Community Edition  
-Maven 3.5.3  
+Maven 3.6.0 
 JDK 11.0.1  
 TestNG (IDEA plugin)  
 

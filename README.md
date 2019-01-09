@@ -23,6 +23,7 @@ TestNG (IDEA plugin)
 * Investigate other reporting options.
   * More detailed output.
   * Some way to link screenshots to failing tests.
+  * Also need to add a timestamp to the report output directory, so reports are not overridden.
 * Programmatically create test data (possibly via API) to cut down test execution time:
   * For test cases such as delete contact, for example.
 * Look into the implications of making the test data driven

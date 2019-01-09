@@ -8,7 +8,7 @@ JDK 11.0.1
 TestNG (IDEA plugin)  
 
 ## Tech debt / future improvements
-* THESE ARE NOT A COMPLETE SET OF TESTS
+* THERE ARE POSITIVE & NEGATIVE TESTS FOR CREATING CUSTOMERS/SUPPLIERS BUT THESE ARE JUST A SAMPLE OF TESTS
 * I've only run the tests in Google Chrome on Windows 10.
   * Need to ensure tests run on supported OS/browser combinations.
 * Investigate running tests in parallel.
